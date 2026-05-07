@@ -12,7 +12,7 @@ services:
       PROPAGATION_SECONDS: "10"
 
       # ---------- 凭证方式一：环境变量（推荐，无需挂载文件）----------
-      TENCENTCLOUD_SECRET_ID: "AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      TENCENTCLOUD_SECRET_ID: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
       TENCENTCLOUD_SECRET_KEY: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
       # ---------- 凭证方式二：凭证文件（注释掉上方两行并取消下方注释）----------

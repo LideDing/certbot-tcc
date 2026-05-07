@@ -49,7 +49,7 @@ pip install .
 参考 `tcc.ini.example` 创建凭证文件（如 `~/tcc.ini`）：
 
 ```ini
-certbot_tcc_secret_id  = AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+certbot_tcc_secret_id  = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 certbot_tcc_secret_key = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 

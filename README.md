@@ -49,7 +49,7 @@ Go to [Tencent Cloud API Key Management](https://console.cloud.tencent.com/cam/c
 Create a credentials file (e.g. `~/tcc.ini`) based on `tcc.ini.example`:
 
 ```ini
-certbot_tcc_secret_id  = AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+certbot_tcc_secret_id  = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 certbot_tcc_secret_key = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 

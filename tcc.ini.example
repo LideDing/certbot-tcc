@@ -10,7 +10,7 @@
 #   - certbot 在权限不是 600 时会输出安全警告
 
 # 腾讯云 SecretId（以 AKID 开头）
-certbot_tcc_secret_id = AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+certbot_tcc_secret_id = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 # 腾讯云 SecretKey
 certbot_tcc_secret_key = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
