@@ -27,13 +27,15 @@ Before issuing a certificate, Let's Encrypt requires proof of domain ownership. 
 ## Installation
 
 ```bash
-pip install git+https://github.com/LideDing/certbot-tcc.git
+TCC_VERSION=v1.0.0 
+pip install git+https://github.com/LideDing/certbot-tcc.git${TCC_VERSION}
 ```
 
 Or install from source:
 
 ```bash
-git clone https://github.com/LideDing/certbot-tcc.git
+TCC_VERSION=v1.0.0 
+git clone https://github.com/LideDing/certbot-tcc.git${TCC_VERSION}
 cd certbot-tcc
 pip install .
 ```

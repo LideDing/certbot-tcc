@@ -44,17 +44,33 @@ for d in $DOMAINS; do
     DOMAIN_ARGS="$DOMAIN_ARGS -d $d"
 done
 
-# ---------- 执行证书申请 ----------
+# 取第一个域名作为证书目录名（certbot 默认以第一个 -d 的域名命名目录）
+PRIMARY_DOMAIN=$(echo "$DOMAINS" | awk '{print $1}')
+CERT_FILE="/etc/letsencrypt/live/${PRIMARY_DOMAIN}/fullchain.pem"
 
-echo "[INFO] 开始申请证书，域名：$DOMAINS"
+# ---------- 申请或续期 ----------
 
-certbot certonly \
-    --authenticator certbot-tcc \
-    --certbot-tcc-propagation-seconds "${PROPAGATION_SECONDS:-10}" \
-    --email "$CERTBOT_EMAIL" \
-    --agree-tos \
-    --non-interactive \
-    $CREDENTIALS_ARGS \
-    $DOMAIN_ARGS
-
-echo "[INFO] 证书申请完成，容器退出。"
+if [ ! -f "$CERT_FILE" ]; then
+    # 证书不存在，首次申请
+    echo "[INFO] 证书不存在，开始首次申请..."
+    certbot certonly \
+        --authenticator certbot-tcc \
+        --certbot-tcc-propagation-seconds "${PROPAGATION_SECONDS:-10}" \
+        --email "$CERTBOT_EMAIL" \
+        --agree-tos \
+        --non-interactive \
+        $CREDENTIALS_ARGS \
+        $DOMAIN_ARGS
+    echo "[INFO] 证书申请完成，容器退出。"
+else
+    # 证书已存在，交由 certbot renew 自行判断是否需要续期
+    # 默认行为：有效期不足 30 天时才续期，否则跳过并退出
+    echo "[INFO] 证书已存在，检查是否需要续期..."
+    certbot renew \
+        --authenticator certbot-tcc \
+        --certbot-tcc-propagation-seconds "${PROPAGATION_SECONDS:-10}" \
+        --cert-name "$PRIMARY_DOMAIN" \
+        --non-interactive \
+        $CREDENTIALS_ARGS
+    echo "[INFO] 续期检查完成，容器退出。"
+fi
