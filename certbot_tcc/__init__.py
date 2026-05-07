@@ -252,7 +252,7 @@ class _TCCClient:
         req.RecordType = "TXT"
         req.RecordLine = "默认"   # 使用默认线路，适用于所有运营商
         req.Value = record_content
-        req.TTL = 60              # 设置较短 TTL，加快 DNS 生效速度
+        req.TTL = 600              # 设置较短 TTL，加快 DNS 生效速度
 
         try:
             resp = self.client.CreateRecord(req)
