@@ -5,8 +5,7 @@ WORKDIR /app
 # 复制本地源码并从本地目录安装，其余依赖使用腾讯云 PyPI 镜像源
 COPY pyproject.toml ./
 COPY certbot_tcc/ ./certbot_tcc/
-RUN pip install --no-cache-dir \
-    -i https://mirrors.tencent.com/pypi/simple/ .
+RUN pip install --no-cache-dir .
 
 # 证书输出目录（挂载宿主机目录以持久化证书）
 VOLUME ["/etc/letsencrypt", "/var/log/letsencrypt"]
