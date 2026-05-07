@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "certbot-tcc"
+version = "0.1.0"
+description = "Certbot DNS-01 插件：基于腾讯云 DNSPod API 3.0 自动完成域名验证"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+
+dependencies = [
+    # certbot 核心库（DNS 插件基类位于 certbot.plugins.dns_common）
+    "certbot>=2.0.0",
+    # 腾讯云官方 Python SDK（DNSPod 模块）
+    "tencentcloud-sdk-python-dnspod",
+    # certbot 插件机制依赖 zope.interface 进行接口声明
+    "zope.interface",
+]
+
+[project.entry-points."certbot.plugins"]
+# 格式：插件名 = Python 模块路径:认证器类名
+# certbot 通过此 entry_point 发现并加载插件
+# 使用时：certbot --authenticator certbot-tcc ...
+certbot-tcc = "certbot_tcc:Authenticator"
+
+[tool.setuptools.packages.find]
+# 自动发现所有 Python 包（即含 __init__.py 的目录）
+where = ["."]

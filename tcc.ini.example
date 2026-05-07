@@ -1,0 +1,16 @@
+# certbot-tcc 凭证配置文件
+#
+# 获取方式：
+#   腾讯云控制台 → 访问管理 → API 密钥管理
+#   https://console.cloud.tencent.com/cam/capi
+#
+# 安全提示：
+#   - 此文件包含敏感信息，请勿提交到版本控制系统
+#   - 建议设置文件权限为 600：chmod 600 tcc.ini
+#   - certbot 在权限不是 600 时会输出安全警告
+
+# 腾讯云 SecretId（以 AKID 开头）
+certbot_tcc_secret_id = AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+# 腾讯云 SecretKey
+certbot_tcc_secret_key = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

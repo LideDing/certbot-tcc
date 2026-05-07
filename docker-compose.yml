@@ -1,0 +1,29 @@
+services:
+  certbot-tcc:
+    build: .
+    # 证书申请完成后容器自动退出，restart: no 确保不会被重启
+    restart: "no"
+    environment:
+      # Let's Encrypt 注册邮箱（必填）
+      CERTBOT_EMAIL: "you@example.com"
+      # 申请的域名，多个域名用空格分隔
+      DOMAINS: "example.com *.example.com"
+      # 等待 DNS TXT 记录生效的秒数（DNS 较慢时可适当调大）
+      PROPAGATION_SECONDS: "10"
+
+      # ---------- 凭证方式一：环境变量（推荐，无需挂载文件）----------
+      TENCENTCLOUD_SECRET_ID: "AKIDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      TENCENTCLOUD_SECRET_KEY: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+
+      # ---------- 凭证方式二：凭证文件（注释掉上方两行并取消下方注释）----------
+      # 将 tcc.ini 挂载到容器内，并通过此变量指定路径
+      # CREDENTIALS_FILE: "/tcc.ini"
+
+    volumes:
+      # 证书持久化目录（必须挂载）
+      - /etc/letsencrypt:/etc/letsencrypt
+      # 日志持久化目录
+      - /var/log/letsencrypt:/var/log/letsencrypt
+
+      # ---------- 凭证方式二：挂载凭证文件（与上方 CREDENTIALS_FILE 配合使用）----------
+      # - ./tcc.ini:/tcc.ini:ro
